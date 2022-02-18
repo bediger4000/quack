@@ -26,3 +26,5 @@ Do we care about the type of the "new item x" added to the left end of the list
 specified for `push(x)`?
 
 ## Interview Analysis
+
+"[Hard]" is not quite right. "[Impossible]" is more like it.
