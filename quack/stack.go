@@ -1,14 +1,22 @@
 package quack
 
+import (
+	"fmt"
+	"io"
+)
+
 type StackItem struct {
 	data interface{}
 	next *StackItem
 }
 
+func (si *StackItem) String() string {
+	return fmt.Sprintf("%v", si.data)
+}
+
 type StackQuack struct {
-	pushstack  *StackItem
-	pullstack  *StackItem
-	sparestack *StackItem
+	pushstack *StackItem
+	pullstack *StackItem
 }
 
 var _ Quack = (*StackQuack)(nil)
@@ -30,15 +38,16 @@ func (sq *StackQuack) Pop() interface{} {
 		return top.data
 	}
 
-	if sq.pushstack != nil {
-		for n := sq.pushstack; n != nil; n = sq.pushstack {
-			n.next = sq.pullstack
-			sq.pullstack = n
+	if sq.pullstack != nil {
+		for n := sq.pullstack; n != nil; n = sq.pullstack {
+			sq.pullstack = n.next
+			n.next = sq.pushstack
+			sq.pushstack = n
 		}
-		bottom := sq.pullstack
-		if bottom != nil {
-			sq.pullstack = bottom.next
-			return bottom.data
+		top := sq.pushstack
+		if top != nil {
+			sq.pushstack = top.next
+			return top.data
 		}
 	}
 
@@ -56,6 +65,7 @@ func (sq *StackQuack) Pull() interface{} {
 		return nil
 	}
 	for n := sq.pushstack; n != nil; n = sq.pushstack {
+		sq.pushstack = n.next
 		n.next = sq.pullstack
 		sq.pullstack = n
 	}
@@ -65,4 +75,16 @@ func (sq *StackQuack) Pull() interface{} {
 		return bottom.data
 	}
 	return nil
+}
+
+func (sq *StackQuack) Print(out io.Writer) {
+	fmt.Fprintf(out, "Push stack: ")
+	for n := sq.pushstack; n != nil; n = n.next {
+		fmt.Fprintf(out, "%v -> ", n)
+	}
+	fmt.Fprintf(out, "\nPull stack: ")
+	for n := sq.pullstack; n != nil; n = n.next {
+		fmt.Fprintf(out, "%v -> ", n)
+	}
+	fmt.Fprintf(out, "\n")
 }
