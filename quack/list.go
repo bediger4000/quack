@@ -1,5 +1,7 @@
 package quack
 
+import "io"
+
 type ListItem struct {
 	data interface{}
 	next *ListItem
@@ -43,4 +45,7 @@ func (lq *ListQuack) Pop() interface{} {
 
 func (lq *ListQuack) Pull() interface{} {
 	return nil
+}
+
+func (lq *ListQuack) Print(out io.Writer) {
 }
