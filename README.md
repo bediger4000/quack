@@ -25,6 +25,10 @@ I'm going to have `pull()` return something so I can try it out.
 Do we care about the type of the "new item x" added to the left end of the list
 specified for `push(x)`?
 
+What does "`O(1)` additional memory" mean? A stack (of any implementation,
+linked list or variable-sized array) will require `O(n)` additional memory,
+where `n` is the number of elements in the stack.
+
 ## Interview Analysis
 
 "[Hard]" is not quite right. "[Impossible]" is more like it.
