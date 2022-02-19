@@ -6,17 +6,41 @@ import (
 	"quack/quack"
 )
 
+const (
+	nothing = iota
+	pushNext
+	pullNext
+	popNext
+)
+
+var opNames = []string{"nothing", "push", "pull", "pop"}
+
 func main() {
 	q := quack.NewStackQuack()
+	n := 1
 
-	for idx := range os.Args {
-		q.Push(os.Args[idx])
-	}
-	for {
-		str := q.Pull()
-		if str == nil {
-			break
+	commands := os.Args[n:]
+
+	for i := 0; i < len(commands); {
+		str := commands[i]
+		switch str {
+		case "push":
+			q.Push(commands[i+1])
+			i += 2
+		case "pop":
+			popped := q.Pop()
+			fmt.Printf("pop %v\n", popped)
+			i++
+		case "pull":
+			pulled := q.Pull()
+			fmt.Printf("pull %v\n", pulled)
+			i++
+		case "quack":
+			q.Print(os.Stdout)
+			i++
+		default:
+			fmt.Printf("noop\n")
+			i++
 		}
-		fmt.Printf("%v\n", str)
 	}
 }
