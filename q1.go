@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"quack/quack"
@@ -13,13 +14,19 @@ const (
 	popNext
 )
 
-var opNames = []string{"nothing", "push", "pull", "pop"}
-
 func main() {
-	q := quack.NewStackQuack()
-	n := 1
+	useList := flag.Bool("list", false, "use a quack implemented by list, default stack based")
+	flag.Parse()
 
-	commands := os.Args[n:]
+	var q quack.Quack
+
+	if *useList {
+		q = quack.NewListQuack()
+	} else {
+		q = quack.NewStackQuack()
+	}
+
+	commands := flag.Args()
 
 	for i := 0; i < len(commands); {
 		str := commands[i]
