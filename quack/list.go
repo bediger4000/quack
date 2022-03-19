@@ -1,6 +1,9 @@
 package quack
 
-import "io"
+import (
+	"fmt"
+	"io"
+)
 
 type ListItem struct {
 	data interface{}
@@ -39,13 +42,30 @@ func (lq *ListQuack) Pop() interface{} {
 	if lq.head.next == lq.tail {
 		return nil
 	}
+
 	n := lq.head.next
+	lq.head = lq.head.next
+	lq.head.next.prev = lq.head
+
 	return n.data
 }
 
 func (lq *ListQuack) Pull() interface{} {
-	return nil
+	if lq.head.next == lq.tail {
+		return nil
+	}
+
+	n := lq.tail.prev
+
+	lq.tail = lq.tail.prev
+	lq.tail.next = nil
+
+	return n.data
 }
 
 func (lq *ListQuack) Print(out io.Writer) {
+	for node := lq.head.next; node != lq.tail; node = node.next {
+		fmt.Fprintf(out, "%v -> ", node.data)
+	}
+	fmt.Fprintf(out, "\n")
 }
