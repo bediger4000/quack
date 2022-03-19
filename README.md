@@ -43,7 +43,7 @@ This is remarkably widespread.
 * [Hardest interview questions ever](https://www.scien.cx/2021/09/09/the-hardest-coding-interview-questions-ever/)
 * [Stack Exchange Question](https://stackoverflow.com/questions/53577545/two-stacks-with-a-deque-whats-the-purpose-of-implementing-it?rq=1)
 * [Another Stack Exchange Question](https://stackoverflow.com/questions/624704/design-a-stack-that-can-also-dequeue-in-o1-amortized-time)
-* [Solution that doesn't realy fit](https://dev.to/sharansharma94/google-interview-problem-solution-ae2)
+* [Solution that doesn't really fit](https://dev.to/sharansharma94/google-interview-problem-solution-ae2)
 * [Probably incorrect big-O analysis](http://trsong.github.io/python/java/2021/02/02/DailyQuestionsFeb.html#apr-21-2021-easy-special-stack)
 
 In light of the fact that *nobody* knows if there's an O(1) algorithm
@@ -51,11 +51,13 @@ that Exam Problem #3 describes, I wonder if some Duke CS students aren't due
 a letter grade increment, or maybe a refund, or at least an apology?
 
 Apparently the source of this is [Web Problem 34](https://algs4.cs.princeton.edu/13stacks/):
+
 ---
 Queue with a constant number of stacks.
 Implement a queue with a constant number of stacks
 so that each queue operations takes a constant (worst-case) number of stack operations.
 Warning: Very high degree of difficulty. 
+
 ---
 
 Apparently it used to say 3 stacks.
