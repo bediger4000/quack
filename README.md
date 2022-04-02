@@ -29,6 +29,50 @@ What does "`O(1)` additional memory" mean? A stack (of any implementation,
 linked list or variable-sized array) will require `O(n)` additional memory,
 where `n` is the number of elements in the stack.
 
+### My Attempt
+
+I did this in Go, because that's what I'm using as my primary language right now.
+
+I wrote a Go interface for a quack:
+
+```go
+type Quack interface {
+    Push(interface{})
+    Pop() interface{}
+    Pull() interface{}
+    Print(io.Writer)
+}
+```
+I wrote a [2-stack quack](quack/stack.go) implementation of that interface,
+and a [doubly-linked list quack](quack/list.go) to see if my
+imperative programming language intuition about this problem works.
+
+The [program](q1.go) "interprets" pushes, pops and pulls on one or the other
+implementation of a quack:
+
+```sh
+$ go build q1.go
+$ ./q1 push 1 push 2 push 3 pull push 4 quack
+pull 1
+Push stack: 4 -> 
+Pull stack: 2 -> 3 -> 
+$ ./q1 -list push 1 push 2 push 3 pull push 4 quack
+pull 1
+4 -> 3 -> 2 -> 
+
+```
+
+By default, the program uses the 2-stack implementation.
+Using a `-list` flag, you can get it to use a doubly-linked list implementation.
+
+Alas, I'm not smart enough to see how a 3-stack implementation might make sense,
+so I didn't do one.
+I'm also not smart enough to do the 6-stack,
+O(1) implementation without a lot of hints.
+
+The Chris Okasaki [paper](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/simple-and-efficient-purely-functional-queues-and-deques/7B3036772616B39E87BF7FBD119015AB)
+that talks about O(1) lazy-evaluation implementations of this problem.
+
 ## Interview Analysis
 
 "[Hard]" is not quite right. "[Impossible]" is more like it.
