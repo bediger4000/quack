@@ -70,12 +70,20 @@ so I didn't do one.
 I'm also not smart enough to do the 6-stack,
 O(1) implementation without a lot of hints.
 
-The Chris Okasaki [paper](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/simple-and-efficient-purely-functional-queues-and-deques/7B3036772616B39E87BF7FBD119015AB)
-that talks about O(1) lazy-evaluation implementations of this problem.
-
 ## Interview Analysis
 
-"[Hard]" is not quite right. "[Impossible]" is more like it.
+The Chris Okasaki [paper](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/simple-and-efficient-purely-functional-queues-and-deques/7B3036772616B39E87BF7FBD119015AB)
+that talks about O(1) lazy-evaluation implementations of this problem says this
+about the 2-stack implementation:
+
+---
+
+Each operation requires only O(1) amortized time,
+but any particular remove might require O(n) time.
+
+---
+
+I have no idea what the Google interviewers are after.
 
 
 ## Around the web
@@ -88,7 +96,7 @@ This is remarkably widespread.
 * [Stack Exchange Question](https://stackoverflow.com/questions/53577545/two-stacks-with-a-deque-whats-the-purpose-of-implementing-it?rq=1)
 * [Another Stack Exchange Question](https://stackoverflow.com/questions/624704/design-a-stack-that-can-also-dequeue-in-o1-amortized-time)
 * [Solution that doesn't really fit](https://dev.to/sharansharma94/google-interview-problem-solution-ae2)
-* [Probably incorrect big-O analysis](http://trsong.github.io/python/java/2021/02/02/DailyQuestionsFeb.html#apr-21-2021-easy-special-stack)
+* [Informal big-O analysis](http://trsong.github.io/python/java/2021/02/02/DailyQuestionsFeb.html#apr-21-2021-easy-special-stack)
 
 In light of the fact that *nobody* knows if there's an O(1) algorithm
 that Exam Problem #3 describes, I wonder if some Duke CS students aren't due
