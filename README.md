@@ -102,6 +102,11 @@ In light of the fact that *nobody* knows if there's an O(1) algorithm
 that Exam Problem #3 describes, I wonder if some Duke CS students aren't due
 a letter grade increment, or maybe a refund, or at least an apology?
 
+Another paper that seems relevant, but has an esoteric title:
+[Real-Time Deques, Multihead !Ibring Machines, and Purely Ftmctional Programming](https://cs.nyu.edu/~goldberg/pubs/cg93.pdf)
+
+## Origin of Problem
+
 Apparently the source of this is [Web Problem 34](https://algs4.cs.princeton.edu/13stacks/):
 
 ---
@@ -113,3 +118,5 @@ Warning: Very high degree of difficulty.
 ---
 
 Apparently it used to say 3 stacks.
+It says nothing about O(1) extra space.
+Does the Google question want something very different?
