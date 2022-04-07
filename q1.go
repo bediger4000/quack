@@ -16,12 +16,15 @@ const (
 
 func main() {
 	useList := flag.Bool("list", false, "use a quack implemented by list, default stack based")
+	useFdq := flag.Bool("fdq", false, "use a quack implemented by function dequeue, default stack based")
 	flag.Parse()
 
 	var q quack.Quack
 
 	if *useList {
 		q = quack.NewListQuack()
+	} else if *useFdq {
+		q = quack.NewFdqQuack()
 	} else {
 		q = quack.NewStackQuack()
 	}
